@@ -1,4 +1,4 @@
 school
 ======
 
-Codes for school work
+Codes for zer0 app making
