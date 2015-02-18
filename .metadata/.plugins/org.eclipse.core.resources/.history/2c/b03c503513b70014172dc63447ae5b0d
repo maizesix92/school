@@ -36,7 +36,7 @@ public class FactorPrime {
 		BigInteger counter = new BigInteger("2");
 		boolean found = false;
 		while (!found && counter.longValue() < Math.sqrt(primeNumber.longValue())){
-			if (primeNumber.divideAndRemainder(counter)[1] == BigInteger.ZERO){
+			if (primeNumber.longValue()%counter.longValue() == 0){
 				found = true;
 			}else{
 				counter = counter.add(new BigInteger("1"));

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class FactorPrime {
 
 	public static void main(String[] args) {
-//		String number = "4294967297";
-		String number = "1127451830576035879";
+		String number = "4294967297";
+//		String number = "1127451830576035879";
 //		String number = "1607310476370097292596889203855070567269667934905795984956897118664324212127749670298953403271979017560"
 //				+ "9601429913262345458317707205045275551070134067328238564789969408388131619464241745157048346632778213573057"
 //				+ "556485618554648705303440456006343361472383645679026645743883162637555685413386695834981717272746246251646"
@@ -36,7 +36,7 @@ public class FactorPrime {
 		BigInteger counter = new BigInteger("2");
 		boolean found = false;
 		while (!found && counter.longValue() < Math.sqrt(primeNumber.longValue())){
-			if (primeNumber.divideAndRemainder(counter)[1] == BigInteger.ZERO){
+			if (primeNumber.longValue()%counter.longValue() == 0){
 				found = true;
 			}else{
 				counter = counter.add(new BigInteger("1"));
