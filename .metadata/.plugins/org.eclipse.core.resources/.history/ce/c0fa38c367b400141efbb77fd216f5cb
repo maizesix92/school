@@ -1,0 +1,26 @@
+package tictactoe;
+
+
+public class Player implements Person{
+
+	private Type type;
+	private Board board;
+
+	public Player(Board board, Type type) {
+		this.type = type;
+		this.board = board;
+	}
+
+
+
+	@Override
+	public void putPiece(int position) {
+		BoardPosition post = board.getBoardPosition(position);
+		try{
+			post.setType(type);
+		}catch(PositionTakenException e){
+			
+		}
+	}
+
+}

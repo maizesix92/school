@@ -1,0 +1,29 @@
+package filenames;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class FilenamesMain {
+
+	public static void main(String[] args) {
+		// Adding filenames
+		ArrayList<String> fileNames = new ArrayList<>();
+		fileNames.add("D:\\SUTD\\Term 5\\Software Construction\\file1.txt");
+		fileNames.add("D:\\SUTD\\Term 5\\Software Construction\\file2.txt");
+		fileNames.add("D:\\SUTD\\Term 5\\Software Construction\\file3.txt");
+		fileNames.add("D:\\SUTD\\Term 5\\Software Construction\\file4.txt");
+		fileNames.add("D:\\SUTD\\Term 5\\Software Construction\\file5.txt");
+		fileNames.add("D:\\SUTD\\Term 5\\Software Construction\\file6.txt");
+		
+		for (String string : fileNames) {
+			FileLooper loop = new FileLooper(string);
+			try {
+				System.out.println(loop.getFileListings());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+}

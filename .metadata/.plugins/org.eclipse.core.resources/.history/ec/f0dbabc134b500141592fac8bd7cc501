@@ -1,0 +1,12 @@
+package SC;
+
+public class StocksMain {
+
+	public static void main(String[] args) {
+		StockGrabberIBM ibmStock = new StockGrabberIBM();
+		StockObserver personA = new StockObserver(ibmStock);
+		personA.printThePrices();
+
+	}
+
+}

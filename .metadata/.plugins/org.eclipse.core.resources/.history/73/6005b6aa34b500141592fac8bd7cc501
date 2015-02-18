@@ -1,0 +1,10 @@
+package SC;
+
+public class StocksMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package tictactoe;
+
+public class BoardPosition {
+
+	private Type type = null;
+	private int position;
+
+	public BoardPosition(int position) {
+		this.position = position;		
+	}
+
+	public void setType(Type type) throws PositionTakenException{
+		if (type == null){
+			this.type = type;
+		}else throw new PositionTakenException();
+	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		if (type.equals(Type.X)){
+			s+="X";
+		}else s += "O";
+		return s;
+	}
+}

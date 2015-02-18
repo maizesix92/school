@@ -1,0 +1,21 @@
+package tictactoe;
+
+public class CheckWinner {
+	
+	private Board board;
+	
+	public CheckWinner(Board board) {
+		this.board = board;
+	}
+	
+	public boolean checkWinner(){
+		if (board.getTTTBoard()[0][0].getType())
+		
+		
+		
+		
+		
+		
+		return false;
+	}
+}

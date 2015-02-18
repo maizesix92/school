@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 7 elements from project &apos;CohortSessionWeek1&apos;&#x0D;&#x0A;- Original project: &apos;CohortSessionWeek1&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Buffer.java&#x0D;&#x0A;     BufferImpl.java&#x0D;&#x0A;     Channel1.java&#x0D;&#x0A;     Client.java&#x0D;&#x0A;     MessageQueue.java&#x0D;&#x0A;     Server.java&#x0D;&#x0A;     Test.java" description="Delete elements" element1="Server.java" element2="MessageQueue.java" element3="Buffer.java" element4="Channel1.java" element5="BufferImpl.java" element6="Client.java" element7="Test.java" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="7" stamp="1422419509465" subPackages="false" version="1.0"/>
+</session>

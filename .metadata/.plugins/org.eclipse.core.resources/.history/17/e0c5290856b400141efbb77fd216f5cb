@@ -1,0 +1,11 @@
+package filenames;
+
+public class FilenamesMain {
+	
+	static String folderPathName;
+
+	public static void main(String[] args) {
+		
+	}
+
+}

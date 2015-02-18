@@ -1,0 +1,21 @@
+package tictactoe;
+
+public class BoardPosition {
+
+	private String type = null;
+	private int position;
+
+	public BoardPosition(int position) {
+		this.position = position;		
+	}
+
+	public void putPiece(String player, int post){
+		if (type == null){
+			type = player;
+			position = post;
+		}else{
+			System.out.println("Cannot place piece here");
+		}
+	}
+
+}

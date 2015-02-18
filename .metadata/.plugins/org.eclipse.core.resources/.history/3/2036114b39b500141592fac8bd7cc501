@@ -1,0 +1,74 @@
+package SC;
+
+import java.util.ArrayList;
+
+//Uses the Subject interface to update all Observers
+
+public class StockGrabberAAPL implements iSubject {
+	
+	private ArrayList<Observer> observers;	// List of observers listening to ibm stocks
+	private String name;
+	private double aaplPrice;
+//	private double googPrice;
+	
+	public StockGrabberAAPL(){
+		
+		// Creates an ArrayList to hold all observers
+		
+		observers = new ArrayList<Observer>();
+		name = "AAPLStocks";
+	}
+	
+	public void register(Observer newObserver) {
+		
+		// Adds a new observer to the ArrayList
+		
+		observers.add(newObserver);
+		
+	}
+
+	public void unregister(Observer deleteObserver) {
+		
+		// Get the index of the observer to delete
+		
+		int observerIndex = observers.indexOf(deleteObserver);
+		
+		// Print out message (Have to increment index to match)
+		
+		System.out.println("Observer " + deleteObserver.getObserverID() + " deleted from " + name);
+		
+		// Removes observer from the ArrayList
+		
+		observers.remove(observerIndex);
+		
+		
+	}
+
+	public void notifyObserver() {
+		
+		// Cycle through all observers and notifies them of
+		// price changes
+		
+		for(Observer observer : observers){
+			
+			observer.update();
+			
+		}
+	}
+	
+	// Change prices for all stocks and notifies observers of changes
+	
+	public void setPrice(double price){
+		
+		this.aaplPrice = price;
+		
+		notifyObserver();
+		
+	}
+	public void print(){
+		System.out.println(String.format("AAPLPrice is %f", aaplPrice));
+	}
+	
+
+	
+}

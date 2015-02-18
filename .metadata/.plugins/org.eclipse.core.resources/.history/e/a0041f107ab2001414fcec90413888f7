@@ -1,0 +1,32 @@
+package tictactoe;
+
+public class Board {
+	
+	Board board;
+	private String[][] ticTacToeBoard;
+	
+	private Board() {
+		ticTacToeBoard = new String[3][3];
+	}
+	
+	public Board getBoard(){
+		if (board == null){
+			board = new Board();
+			return board;
+		}else{
+			return board;
+		}
+	}
+	
+	public String getTicTacToeBoard(){
+		String s = String.format("[%s, %s, %s]\n[%s, %s, %s]\n[%s, %s, %s]\n"
+				, ticTacToeBoard[0][0], ticTacToeBoard[0][1], ticTacToeBoard[0][2],
+						ticTacToeBoard[1][0],ticTacToeBoard[1][1],ticTacToeBoard[1][2],
+								ticTacToeBoard[2][0],ticTacToeBoard[2][1],ticTacToeBoard[2][2]);
+		return s;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,139 @@
+package Lab3CSE;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
+public class BankImpl implements Bank {
+	private int numberOfCustomers;	// the number of customers
+	private int numberOfResources;	// the number of resources
+
+	private int[] available; 	// the available amount of each resource
+	private int[][] maximum; 	// the maximum demand of each customer
+	private int[][] allocation;	// the amount currently allocated
+	private int[][] need;		// the remaining needs of each customer
+
+	public BankImpl (int[] resources, int numberOfCustomers) {
+		// TODO: set the number of resources
+		numberOfResources = resources.length;
+		// TODO: set the number of customers
+		this.numberOfCustomers = numberOfCustomers;
+		// TODO: set the value of bank resources to available
+		available = resources;
+		// TODO: set the array size for maximum, allocation, and need
+		maximum = new int[numberOfCustomers][numberOfResources];
+		allocation = new int[numberOfCustomers][numberOfResources];
+		need = new int[numberOfCustomers][numberOfResources];
+
+
+
+	}
+
+	public int getNumberOfCustomers() {
+		return numberOfCustomers;		
+	}
+
+	public void addCustomer(int customerNumber, int[] maximumDemand) {
+		// TODO: initialize the maximum, allocation, need for this customer
+		maximum[customerNumber] = maximumDemand;
+		for (int i = 0; i < allocation[customerNumber].length; i++) {
+			allocation[customerNumber][i] = 0;
+			need[customerNumber][i] = maximum[customerNumber][i];
+		}
+
+		// TODO: check if the customer's maximum demand exceeds bank's available resource
+		for (int i = 0; i < numberOfCustomers; i++) {				// customer
+			for (int j = 0; j < numberOfResources; j++) {		// resources
+				if (maximum[i][j] > available[j]){
+					System.out.println("Customer requires too much resources! Aborting...");
+					//System.exit(-1);
+					return;
+				}
+			}
+		}		
+	}
+
+	public void getState() {
+		System.out.println("==========================================");
+		System.out.print("Available resources: ");
+		System.out.println(Arrays.toString(available));
+		for (int i = 0; i<allocation.length;i++){
+			System.out.print(String.format("Customer %d's allocation: ", i+1));
+			System.out.println(Arrays.toString(allocation[i]));
+			System.out.print(String.format("Customer %d's maximum: ", i+1));
+			System.out.println(Arrays.toString(maximum[i]));
+			System.out.print(String.format("Customer %d's need: ", i+1));
+			System.out.println(Arrays.toString(need[i]));
+		}
+	}
+
+	public synchronized boolean requestResources(int customerNumber, int[] request) {
+		// TODO: check if the state is safe or not
+		for (int i = 0; i < maximum[customerNumber].length; i++) {
+			if (available[i] < request[i]){
+				System.out.println("Bank cannot support request! Too much resources needed!");
+				return false;
+			}else if (!checkSafe(customerNumber, request)){
+				System.out.println("Bank cannot support request! Too much resources needed!");
+				return false;
+			}
+		}
+		// TODO: if it is safe, allocate the resources to customer customerNumber 
+		for (int i=0;i<allocation[customerNumber].length;i++){
+			allocation[customerNumber][i] = request[i];
+			need[customerNumber][i] = maximum[customerNumber][i] - allocation[customerNumber][i];
+			available[i] -=request[i];
+		}
+		// TODO: return state
+		return true;
+	}
+
+	public synchronized void releaseResources(int customerNumber, int[] release) {
+		// TODO: release the resources from customer customerNumber 
+		// available , allocation
+		for (int i = 0; i < allocation[customerNumber].length; i++) {
+			available[i] += release[i];
+			allocation[customerNumber][i] -=release[i];
+		}
+	}
+
+	private synchronized boolean checkSafe(int customerNumber, int[] request) {
+		// TODO: check if the state is safe
+		// TODO: initialize a finish vector
+		
+
+		// TODO: copy the available matrix to temp_available
+		int[] tempAvailable = available;
+		int[] tempNeed = need[customerNumber];
+		int[] tempAllocation = allocation[customerNumber];
+		for (int i = 0; i < tempAvailable.length; i++) {
+			tempAvailable[i] -= request[i];
+			tempNeed[i] -= request[i];
+			tempAllocation[i] += request[i];
+		}
+
+		// TODO: if customer request exceed maximum, return false
+		for (int i = 0; i < maximum[customerNumber].length; i++) {
+			if (maximum[customerNumber][i] < request[i]){
+				System.out.println("Customer's request cannot be greater than its maximum!");
+				return false;
+			}
+		}
+		// TODO: check if the Bank's algorithm can finish based on safety algorithm
+		// (see P332, Section 7.5.3.1, Operating System Concepts with Java, Eighth Edition)
+		boolean[] finish = new boolean[numberOfCustomers];
+		for (int i=0;i<numberOfCustomers;i++){
+			finish[i] = false;
+		}
+		boolean possible = true;
+		while(possible){
+			possible = false;
+			for (int i = 0; i < numberOfCustomers; i++) {
+				
+			}
+		}
+		// TODO: restore the value of need and allocation for the customer
+		// TODO: go through the finish to see if all value is true
+		// TODO: return state
+		return true;
+	}
+}

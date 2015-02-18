@@ -1,0 +1,10 @@
+package tictactoe;
+
+public class TicTacToe {
+	public static void main(String[] args) {
+		Board gameBoard = Board.getBoard();
+		PlayerController controller = new PlayerController(gameBoard);
+		Player player1 = new Player(gameBoard, Type.X);
+		Player player2 = new Player(gameBoard, Type.O);
+	}
+}

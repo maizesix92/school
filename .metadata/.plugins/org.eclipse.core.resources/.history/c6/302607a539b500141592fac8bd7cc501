@@ -1,0 +1,25 @@
+package SC;
+
+public class StocksMain {
+
+	public static void main(String[] args) {
+		StockGrabberIBM ibmStock = new StockGrabberIBM();
+		StockGrabberAAPL aaplStock = new StockGrabberAAPL();
+		StockGrabberGOOG googStock = new StockGrabberGOOG();
+		StockObserver personA = new StockObserver();
+		StockObserver personB = new StockObserver();
+		personA.addStocks(ibmStock);
+		ibmStock.setPrice(50.0);
+		ibmStock.setPrice(100.0);
+		personA.addStocks(aaplStock);
+		aaplStock.setPrice(1500.0);
+		personB.addStocks(aaplStock);
+		personB.update();
+		personA.removeStocks(ibmStock);
+		personA.addStocks(googStock);
+		googStock.setPrice(15000.00);
+		ibmStock.setPrice(2000.00);
+		personB.addStocks(ibmStock);
+	}
+
+}

@@ -1,0 +1,18 @@
+package electorate;
+
+public class Electorate implements IElectorate{
+
+	private boolean voted;
+
+	public Electorate() {
+		voted = false;
+	}
+
+	@Override
+	public void castVote(Candidate can) {
+		if (voted == false){
+			can.setVoteCount(can.getVoteCount()+1);
+			voted = true;
+		}
+	}
+}
