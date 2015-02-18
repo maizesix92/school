@@ -1,0 +1,4 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Feb 19 00:14:02 SGT 2015
+@default-models-http\://download.eclipse.org/recommenders/models/luna/.lastUpdated=1424276042458
+http\://download.eclipse.org/recommenders/models/luna/.error=Could not transfer artifact jre\:jre\:zip\:call\:1.0.0-SNAPSHOT from/to models (http\://download.eclipse.org/recommenders/models/luna/)\: Checksum validation failed, expected <div but is 4151411f93d91566a2c0a0ce7a5090765c8f5d8f
