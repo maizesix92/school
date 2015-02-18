@@ -37,7 +37,7 @@ public class FactorPrimeServer {
 		System.out.println("(... expecting connection ...)");
 		for (int i=0;i<socketList.length;i++){
 			clientSocket = serverSocket.accept();
-			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);                
+			PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);                   
 //	        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 			socketList[i] = clientSocket;
 			pwList[i] = out;

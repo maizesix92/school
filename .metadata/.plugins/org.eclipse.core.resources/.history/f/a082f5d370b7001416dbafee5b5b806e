@@ -17,22 +17,19 @@ public class ChatClient {
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String userInput;
 		// Upon connection, print out the client number associated
-		String clientNum = in.readLine();
-		System.out.println(clientNum);
-		while (true){
-			System.out.println("Type your message:");
-			userInput = stdIn.readLine();
-			out.println(userInput);
-			out.flush();
-			System.out.println(in.readLine());
-			
-			System.out.println("Wait for your turn");
-			
-		}
-//		echoSocket.close();
-//		in.close();
-//		out.close();
-//		stdIn.close();           
+		System.out.println(in.readLine());
+		
+		
+		userInput = stdIn.readLine();
+		out.println(userInput);
+		out.flush();
+		System.out.println(in.readLine());
+
+
+		echoSocket.close();
+		in.close();
+		out.close();
+		stdIn.close();           
 
 	}
 

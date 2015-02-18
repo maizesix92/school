@@ -24,10 +24,8 @@ public class ChatClient {
 			userInput = stdIn.readLine();
 			out.println(userInput);
 			out.flush();
-			System.out.println(in.readLine());
-			
 			System.out.println("Wait for your turn");
-			
+			System.out.println(in.readLine());
 		}
 //		echoSocket.close();
 //		in.close();

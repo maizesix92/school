@@ -1,0 +1,26 @@
+package SC;
+
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+
+public class ChatServer {
+
+	public static void main(String[] args) throws Exception {
+		ArrayList<Socket> listOfSockets = new ArrayList<>();
+		ServerSocket serverSocket = new ServerSocket(4321);
+		serverSocket.setSoTimeout(10000); 
+		// Clients given 10 seconds to connect to server
+		// After 10 secs are up, stop listening for sockets
+		try{
+			while (true){
+				listOfSockets.add(serverSocket.accept());
+			}
+		}catch(SocketTimeoutException e){
+			System.out.println("Server has stopped listening");
+			break;
+		}
+	}
+
+}
