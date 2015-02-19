@@ -1,6 +1,0 @@
-package tictactoe;
-
-public interface Person {
-
-	void putPiece(Type type, int position);
-}

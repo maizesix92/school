@@ -1,7 +1,0 @@
-package tictactoe;
-
-public interface Person {
-	String name;
-	Type type;
-	void putPiece();
-}
