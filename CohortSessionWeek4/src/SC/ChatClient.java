@@ -20,19 +20,20 @@ public class ChatClient {
 		String clientNum = in.readLine();
 		System.out.println(clientNum);
 		while (true){
+			if (in.ready()){
+				System.out.println(in.readLine());
+				continue;
+			}
 			System.out.println("Type your message:");
 			userInput = stdIn.readLine();
 			out.println(userInput);
 			out.flush();
-			System.out.println(in.readLine());
-			
 			System.out.println("Wait for your turn");
-			
 		}
-//		echoSocket.close();
-//		in.close();
-//		out.close();
-//		stdIn.close();           
+		//		echoSocket.close();
+		//		in.close();
+		//		out.close();
+		//		stdIn.close();           
 
 	}
 

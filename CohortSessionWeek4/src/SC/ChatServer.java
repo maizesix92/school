@@ -30,21 +30,23 @@ public class ChatServer {
 	}
 
 	public void startChatGroup() throws Exception{
+		int counter = 0;
 		while (true){
-			for (int i = 0; i < listOfSockets.size(); i++) {
-				PrintWriter currentPw = listOfPw.get(i);
-				BufferedReader currentBr = listOfBr.get(i);
-//				currentPw.print("Please type your message: \r\n");
-//				currentPw.flush();
-				String s = currentBr.readLine();
-				for (int j = 0; j < listOfSockets.size(); j++) {
-
+			
+			//				PrintWriter currentPw = listOfPw.get(i);
+			BufferedReader currentBr = listOfBr.get(counter);
+			//				currentPw.print("Please type your message: \r\n");
+			//				currentPw.flush();
+			String s = currentBr.readLine();
+			for (int j = 0; j < listOfSockets.size(); j++) {
+				if (counter!=j){
 					PrintWriter tempPw = listOfPw.get(j);
-					tempPw.print(String.format("Client %d says: %s\r\n", i, s));
+					tempPw.print(String.format("Client %d says: %s\r\n", counter, s));
 					tempPw.flush();
-
 				}
 			}
+			counter++;
+			counter = counter%listOfSockets.size();
 		}
 	}
 
@@ -64,6 +66,7 @@ public class ChatServer {
 			}catch(SocketTimeoutException e){
 				System.out.println("Server has stopped listening");
 				System.out.println(String.format("Number of clients connected = %d", listOfSockets.size()));
+
 				break;
 			}
 		}
