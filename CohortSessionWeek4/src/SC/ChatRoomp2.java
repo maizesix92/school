@@ -8,17 +8,16 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ChatRoom2 {
+public class ChatRoomp2 {
 
 	private static ServerSocket serverSocket;
 	private static ArrayList<Socket> listOfSockets = new ArrayList<Socket>();
 	//	private static ArrayList<PrintWriter> listOfPw = new ArrayList<PrintWriter>();
 	private static ArrayList<BufferedReader> listOfBr = new ArrayList<BufferedReader>();
-	private static ArrayList<Thread> listOfThreads = new ArrayList<Thread>();
 
 
 	public static void main(String[] args) throws Exception {
-		ChatRoom2 room = new ChatRoom2();
+		ChatRoom room = new ChatRoom();
 		room.getClient();
 
 	}
@@ -34,7 +33,6 @@ public class ChatRoom2 {
 					try {
 						
 						Socket clientSocket = serverSocket.accept();
-						serverSocket.setSoTimeout(10000);
 						ID++;
 						PrintWriter pw = new PrintWriter(clientSocket.getOutputStream(), true);
 						BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
