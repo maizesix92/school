@@ -19,21 +19,27 @@ public class ChatClient {
 		// Upon connection, print out the client number associated
 		String clientNum = in.readLine();
 		System.out.println(clientNum);
-		while (true){
-			if (in.ready()){
-				System.out.println(in.readLine());
-				continue;
+		System.out.println("Please wait for your turn...");
+		String input;
+		while (true){			
+			while((input = in.readLine()) != null && !input.equals("serverEndMessage")){
+				System.out.println(input);
 			}
-			System.out.println("Type your message:");
 			userInput = stdIn.readLine();
-			out.println(userInput);
-			out.flush();
-			System.out.println("Wait for your turn");
+			if (!userInput.equals("Bye")){
+				out.println(userInput);
+				out.flush();
+				System.out.println("Wait for your turn");
+			}else{
+				out.println("Client left");
+				out.flush();
+				break;
+			}
 		}
-		//		echoSocket.close();
-		//		in.close();
-		//		out.close();
-		//		stdIn.close();           
+		echoSocket.close();
+		in.close();
+		out.close();
+		stdIn.close();           
 
 	}
 

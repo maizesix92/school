@@ -13,7 +13,7 @@ public class ChatRoom {
 	private static ServerSocket serverSocket;
 	private static ArrayList<Socket> listOfSockets = new ArrayList<Socket>();
 	//	private static ArrayList<PrintWriter> listOfPw = new ArrayList<PrintWriter>();
-	private static ArrayList<BufferedReader> listOfBr = new ArrayList<BufferedReader>();
+//	private static ArrayList<BufferedReader> listOfBr = new ArrayList<BufferedReader>();
 
 
 	public static void main(String[] args) throws Exception {
@@ -45,13 +45,14 @@ public class ChatRoom {
 								String s;
 								try {
 									while ((s = br.readLine()) != null){
-										if (s.contains("bye")){
+										if (s.equals("bye")){
 											System.out.println("Client " + threadID + " has left the chat!");
 											break;
 										}
 										System.out.print("Client " + threadID + " says: ");
 										System.out.println(s);										
 									}
+									
 									br.close();
 								} catch (IOException e) {
 									e.printStackTrace();
@@ -59,7 +60,6 @@ public class ChatRoom {
 							}
 						}).start();
 						listOfSockets.add(clientSocket);
-//						listOfBr.add(br);
 						
 					} catch (IOException e) {
 						e.printStackTrace();

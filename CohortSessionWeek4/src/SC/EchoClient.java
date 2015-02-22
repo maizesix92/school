@@ -6,7 +6,7 @@ public class EchoClient {
 	public static void main(String[] args) throws Exception {
 		//String hostName = "localhost";
 		//String hostName = "fe80::7517:c1af:b2bb:da73%4";
-		String hostName = "10.12.10.142";
+		String hostName = "127.0.0.1";
 		int portNumber = 4321;
 
 		Socket echoSocket = new Socket(hostName, portNumber);

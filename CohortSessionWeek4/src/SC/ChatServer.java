@@ -22,7 +22,7 @@ public class ChatServer {
 		listOfPw = new ArrayList<>();
 		listOfBr = new ArrayList<>();
 		serverSocket = new ServerSocket(4321);
-		serverSocket.setSoTimeout(10000); 
+
 		// Clients given 10 seconds to connect to server
 		// After 10 secs are up, stop listening for sockets
 		cs.getClients();
@@ -32,26 +32,29 @@ public class ChatServer {
 	public void startChatGroup() throws Exception{
 		int counter = 0;
 		while (true){
-			
-			//				PrintWriter currentPw = listOfPw.get(i);
+
+			PrintWriter currentPw = listOfPw.get(counter);
 			BufferedReader currentBr = listOfBr.get(counter);
-			//				currentPw.print("Please type your message: \r\n");
-			//				currentPw.flush();
+			currentPw.println("Please type your message: ");
+			currentPw.println("Type 'Bye' to exit");
+			currentPw.println("serverEndMessage");
+			currentPw.flush();
 			String s = currentBr.readLine();
+			
 			for (int j = 0; j < listOfSockets.size(); j++) {
-				if (counter!=j){
-					PrintWriter tempPw = listOfPw.get(j);
-					tempPw.print(String.format("Client %d says: %s\r\n", counter, s));
-					tempPw.flush();
-				}
+				PrintWriter tempPw = listOfPw.get(j);
+				tempPw.print(String.format("Client %d says: %s\r\n", counter, s));
+				tempPw.flush();
 			}
 			counter++;
 			counter = counter%listOfSockets.size();
 		}
 	}
-
+	
+	
 	public void getClients() throws Exception{
 		int clientCounter = 0;
+		serverSocket.setSoTimeout(10000); 
 		while (true){
 			try{
 				Socket socket = serverSocket.accept();
@@ -66,7 +69,6 @@ public class ChatServer {
 			}catch(SocketTimeoutException e){
 				System.out.println("Server has stopped listening");
 				System.out.println(String.format("Number of clients connected = %d", listOfSockets.size()));
-
 				break;
 			}
 		}

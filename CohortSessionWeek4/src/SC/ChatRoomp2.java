@@ -50,7 +50,7 @@ public class ChatRoomp2 {
 											break;
 										}
 										System.out.print("Client " + threadID + " says: ");
-										System.out.println(s);										
+										System.out.println(s);
 									}
 									br.close();
 								} catch (IOException e) {

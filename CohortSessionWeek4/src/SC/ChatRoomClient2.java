@@ -1,11 +1,11 @@
 package SC;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.SocketException;
+import java.rmi.ServerException;
 
 public class ChatRoomClient2 {
 
@@ -22,19 +22,40 @@ public class ChatRoomClient2 {
 				new BufferedReader(
 						new InputStreamReader(System.in));
 		String userInput;
-		System.out.println(in.readLine());
-		do {
+		String serverInput;
+		while (true){
+			while ((serverInput = in.readLine()) != null && !serverInput.equals("serverEndMessage")) {
+				System.out.println(serverInput);
+			}
 			System.out.println("Type your message: ");
-			userInput = stdIn.readLine();
-			out.println(userInput);
-			out.flush();
-		} while (!userInput.equals("bye"));
-
+			try{
+				echoSocket.setSoTimeout(5000);
+				while (!stdIn.ready()){
+					
+				}
+//				if (stdIn.ready()){
+					userInput = stdIn.readLine();
+					out.println(userInput);
+					out.println("endMessage");
+					out.flush();
+					echoSocket.setSoTimeout(0);
+					if (userInput.equals("bye")) {				
+						break;
+					}
+//				}
+			}catch(SocketException e){
+				System.out.println("Skipping...");
+				out.println();
+				out.flush();
+			}
+		}
 		echoSocket.close();
 		in.close();
 		out.close();
 		stdIn.close();           
 
 	}
+
+
 
 }
