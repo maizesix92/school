@@ -46,9 +46,8 @@ public class ChatRoom2 {
 						System.out.print("Client " + i + " says: ");
 						System.out.println(s);
 					}
-				}catch (Exception e) {	
-					System.out.println("Skipping client " + i);
-					continue;
+				}catch (IOException e) {
+					e.printStackTrace();
 				}
 			}
 		}

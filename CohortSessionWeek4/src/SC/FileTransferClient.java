@@ -12,6 +12,8 @@ public class FileTransferClient {
 
 
 	public static void main(String[] args) throws Exception {
+		// Setting the timeout time in ms
+		int timeout = 5;
 		// Names of the different text files to pass to server
 		String textName = "File1_1.txt";
 //		String textName = "File1_2.txt";
@@ -38,15 +40,20 @@ public class FileTransferClient {
 				out.println(userInput);
 				out.flush();
 				try{
-					echoSocket.setSoTimeout(5000);
+					// Checking for timeout
+					long timeIn = System.currentTimeMillis();
+					while(!in.ready()){
+						long timeDiff = System.currentTimeMillis() - timeIn;
+						if (timeDiff >= timeout) throw new SocketTimeoutException();
+					}
 
 					String acknowledgement = in.readLine();
-//					if (acknowledgement.equals("Received")){
-//						continue;
-//					}
+					if (acknowledgement.equals("Received")){
+						continue;
+					}
 				}catch(SocketTimeoutException e){
 					// re-transmitting 
-					
+					System.out.println("Re-transmitting");
 					out.println(userInput);
 					out.flush();
 					continue;

@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="java.net.Socket"/>
 <fullyQualifiedTypeName name="tictactoe2.Player"/>
 <fullyQualifiedTypeName name="tictactoe2.TicTacToe"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="tictactoe2.TicTacToePlayer"/>
 <fullyQualifiedTypeName name="SC.SocketTimeout"/>
@@ -19,9 +18,13 @@
 <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
-<fullyQualifiedTypeName name="java.lang.Runnable"/>
-<fullyQualifiedTypeName name="java.net.SocketTimeoutException"/>
-<fullyQualifiedTypeName name="java.net.SocketException"/>
 <fullyQualifiedTypeName name="java.net.ServerSocket"/>
 <fullyQualifiedTypeName name="java.rmi.ServerException"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.net.SocketTimeoutException"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
+<fullyQualifiedTypeName name="java.lang.Boolean"/>
+<fullyQualifiedTypeName name="java.net.SocketException"/>
 </qualifiedTypeNameHistroy>

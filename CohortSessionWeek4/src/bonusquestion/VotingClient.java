@@ -17,6 +17,9 @@ public class VotingClient {
 	private static ReentrantLock lockB;
 	
 	private static boolean voted = false;
+	private static boolean winnerFound = false;
+	
+	private static int numberOfElec = 5;
 
 	public static void main(String[] args) throws Exception {
 		String hostName = "127.0.0.1";
@@ -28,12 +31,14 @@ public class VotingClient {
 		BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 		String userInput;
+//		numberOfElec = Integer.parseInt(in.readLine());
 		// new thread for listening to incoming votes
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				while (true){
+				int counter = 0;
+				while (counter < numberOfElec){
 					try {
 						String vote = in.readLine();
 						if (vote.equals("A")){
@@ -41,18 +46,47 @@ public class VotingClient {
 						}else if (vote.equals("B")){
 							voteForB();
 						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						counter++;
+					} catch (Exception e) {
+						continue;
 					}
 				}
 				
 			}
 		}).start();
 		while (!voted){
-			
+			System.out.println("Please choose who you want to vote for! [A/B]");
+			userInput = stdIn.readLine();
+			if (userInput.equals("A") || userInput.equals("B")){
+				voted = true;
+				out.println(userInput);
+				out.flush();
+				System.out.println("Thanks for voting! Please wait for the results!");
+				break;
+			}
+			System.out.println("Invalid input");
+			continue;
 		}
+		while(!winnerFound){
+			winnerFound = checkWinner();
+		}
+		out.print(true);
+		out.flush();
+		stdIn.close();
+		in.close();
+		out.close();
+		echoSocket.close();
+		System.out.println("Closed");
 
+	}
+	
+	private static boolean checkWinner(){
+		if (voteA + voteB == numberOfElec){
+			if (voteA > voteB) System.out.println("A is the winner!");
+			else System.out.println("B is the winner!");
+			return true;
+		}
+		return false;
 	}
 	
 	private static void voteForA(){
