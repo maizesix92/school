@@ -27,4 +27,6 @@
 <fullyQualifiedTypeName name="java.lang.Runnable"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="java.net.SocketException"/>
+<fullyQualifiedTypeName name="SC.BadThreads.CorrectorThread"/>
+<fullyQualifiedTypeName name="java.lang.ThreadGroup"/>
 </qualifiedTypeNameHistroy>
