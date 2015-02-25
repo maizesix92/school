@@ -11,7 +11,7 @@
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item value="785" key="dialogHeight"/>
-		<item value="949" key="dialogWidth"/>
+		<item value="1440" key="dialogWidth"/>
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
@@ -31,11 +31,11 @@
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID"/>
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="D:\SUTD\Term 5\Computer System Engineering\Assignment1"/>
 			<item value="D:\SUTD\Term 5\Computer System Engineering\Week 3\Lab"/>
 			<item value="D:\SUTD\Term 5\Computer System Engineering\Week 3"/>
 			<item value="C:\Users\User\Desktop\SUTD\Term 5\Computer System Engineering\Week 3"/>
 			<item value="C:\Users\User\Desktop\SUTD\UROP\Deep Learning in NLP\jamr-master\src"/>
-			<item value="C:\Users\User\Desktop\SUTD\Term 5\Computer System Engineering\Week 2"/>
 		</list>
 	</section>
 </section>
