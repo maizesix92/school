@@ -26,6 +26,7 @@ class A extends Thread{
 			System.out.println("done sleeping");
 		}
 		catch (InterruptedException e){
+			// This exception is only thrown if the thread was sleeping and interrupt() is called
 			System.out.println("InterruptedException caught");
 			//throw new RuntimeException("Thread interrupted...");
 		}

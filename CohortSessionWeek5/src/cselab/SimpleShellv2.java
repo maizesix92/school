@@ -1,4 +1,4 @@
-package lab_1;
+package cselab;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * 1000500
  *
  */
-public class SimpleShell {
+public class SimpleShellv2 {
 	static Process process;
 	static File PathDirectory = new File(System.getProperty("user.dir"));
 	static ArrayList<String> history = new ArrayList<String>();
@@ -51,6 +51,7 @@ public class SimpleShell {
 				System.out.println("See you.");
 				System.exit(0);
 			}
+			
 
 			try{
 				ArrayList<String> command = new ArrayList<String>();
@@ -58,42 +59,6 @@ public class SimpleShell {
 				for (int i = 0; i<cmdAry.length; i++){
 					command.add(cmdAry[i]);
 				}
-				// TODO: implement code to handle create here
-				if (command.get(0).equals("create")){
-					String fileName = command.get(1);
-					File file = new File(fileName);
-					file.createNewFile();
-				}
-				// TODO: implement code to handle delete here
-				else if (command.get(0).equals("delete")){
-					String fileName = command.get(1);
-					File file = new File(fileName);
-					if(file.exists()){
-						file.delete();
-					}else{
-						System.out.println("No such file exists!");
-					}
-				}
-				// TODO: implement code to handle display here
-				else if (command.get(0).equals("display")){
-					String fileName = command.get(0);
-					File file = new File(fileName);
-					FileReader fr = new FileReader(file);
-					BufferedReader reader = new BufferedReader(fr);
-					String input;
-					while((input = reader.readLine()) != null) System.out.println(input);
-					reader.close();
-				}
-				// TODO: implement code to handle list here
-
-				// TODO: implement code to handle find here
-
-				// TODO: implement code to handle tree here
-
-				// other commands
-				probuilder = new ProcessBuilder(command);
-				probuilder.directory(PathDirectory);
-
 				if (command.get(0).equals("cd")){
 					if (command.get(1).equals("..")){
 						try{
@@ -158,6 +123,43 @@ public class SimpleShell {
 						}
 					}
 				}
+				// TODO: implement code to handle create here
+				if (command.get(0).equals("create")){
+					String fileName = command.get(1);
+					File file = new File(fileName);
+					file.createNewFile();
+				}
+				// TODO: implement code to handle delete here
+				else if (command.get(0).equals("delete")){
+					String fileName = command.get(1);
+					File file = new File(fileName);
+					if(file.exists()){
+						file.delete();
+					}else{
+						System.out.println("No such file exists!");
+					}
+				}
+				// TODO: implement code to handle display here
+				else if (command.get(0).equals("display")){
+					String fileName = command.get(0);
+					File file = new File(fileName);
+					FileReader fr = new FileReader(file);
+					BufferedReader reader = new BufferedReader(fr);
+					String input;
+					while((input = reader.readLine()) != null) System.out.println(input);
+					reader.close();
+				}
+				// TODO: implement code to handle list here
+
+				// TODO: implement code to handle find here
+
+				// TODO: implement code to handle tree here
+
+				// other commands
+				probuilder = new ProcessBuilder(command);
+				probuilder.directory(PathDirectory);
+
+				
 				process = probuilder.start();
 
 			}catch(Exception e){

@@ -1,7 +1,7 @@
 package SC;
 public class SleepExample {    
-	public static final int rounds = 5000;
-	public static final int sleepingTime = 5;
+	public static final int rounds = 20;
+	public static final int sleepingTime = 1000;
 	
     public static void main(String[] args) throws Exception {
     	LeftThread left = new LeftThread();
@@ -28,8 +28,9 @@ class LeftThread extends Thread {
 			
 			try { 
 				Thread.sleep(SleepExample.sleepingTime*2);
-			}
-			catch (InterruptedException e) {
+//				Thread.sleep(SleepExample.sleepingTime + (long)4.12);
+//				Thread.yield();
+			}catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
@@ -42,6 +43,7 @@ class RightThread extends Thread {
 	public void run() {
 		try {
 			Thread.sleep(SleepExample.sleepingTime);
+//			Thread.yield();
 		}
 		catch (InterruptedException e) {
 			e.printStackTrace();
@@ -49,7 +51,7 @@ class RightThread extends Thread {
 
 		for (int i = 0; i <  SleepExample.rounds; i++) {
 			System.out.print(4);
-			
+//			Thread.yield();
 			try { 
 				Thread.sleep(SleepExample.sleepingTime*2);
 			}

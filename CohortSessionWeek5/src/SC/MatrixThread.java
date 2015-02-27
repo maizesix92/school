@@ -13,8 +13,8 @@ public class MatrixThread {
 		result = new int[matA.length][matA.length];
 		Thread1 thread1 = mat.new Thread1();
 		Thread2 thread2 = mat.new Thread2();
-		thread1.run();
-		thread2.run();
+		thread1.start();
+		thread2.start();
 		thread1.join();
 		thread2.join();
 		for (int i = 0; i < result.length; i++) {

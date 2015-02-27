@@ -13,8 +13,8 @@ public class MatrixRunnable {
 		result = new int[matA.length][matA.length];
 		Thread thread1 = new Thread(mat.new Thread1());
 		Thread thread2 = new Thread(mat.new Thread2());
-		thread1.run();
-		thread2.run();
+		thread1.start();
+		thread2.start();
 		thread1.join();
 		thread2.join();
 		
