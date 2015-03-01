@@ -2,6 +2,10 @@ package SC;
 
 import java.math.BigInteger;
 
+/**Cohort Exercise 6
+ * @author User
+ *
+ */
 public class FactorThread {
 
 	public static volatile boolean isFound = false;
@@ -23,8 +27,8 @@ public class FactorThread {
 		Thread[] list = new Thread[3];
 		FactorThread fp = new FactorThread();
 		Thread thread1 = fp.new FactoringPrime(number, 2);
-		Thread thread2 = fp.new FactoringPrime(number, 55);
-		Thread thread3 = fp.new FactoringPrime(number, 10);
+		Thread thread2 = fp.new FactoringPrime(number, 3);
+		Thread thread3 = fp.new FactoringPrime(number, 4);
 		list[0] = thread1;
 		list[1] = thread2;
 		list[2] = thread3;
@@ -71,29 +75,10 @@ public class FactorThread {
 			if (toPrint){
 				System.out.println(String.format("Thread starting at %d found prime factors!", starting));
 				System.out.println(String.format("Prime factors is: %s", counter.toString()));
-				//System.out.println(String.format("Prime factors are: %s\nand\n%s", factor.toString(), factor2.toString()));
+				System.out.println(String.format("Prime factors are: %s\nand\n%s", counter.toString(), (bigInteger.divide(counter)).toString()));
 
 			}
 		}
-
-		//		public BigInteger trialDivision(BigInteger primeNumber){
-		//
-		//			BigInteger counter = new BigInteger(starting + "");
-		//			while (!isFound && (counter.longValue() < Math.sqrt(primeNumber.longValue()))){
-		//				if (this.isInterrupted()){
-		//					System.out.println("Thread interrupted");
-		//					return null;
-		//				}else{
-		//					if (primeNumber.divideAndRemainder(counter)[1] == BigInteger.ZERO){
-		//						isFound = true;
-		//						break;
-		//					}else{
-		//						counter = counter.add(new BigInteger("3"));
-		//					}
-		//				}
-		//			}
-		//			return counter;
-		//		}
 
 	}
 

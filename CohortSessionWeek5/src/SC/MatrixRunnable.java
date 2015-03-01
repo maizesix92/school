@@ -1,5 +1,9 @@
 package SC;
 
+/**Cohort Exercise 2
+ * @author User
+ *
+ */
 public class MatrixRunnable {
 	
 	static int[][] matA;

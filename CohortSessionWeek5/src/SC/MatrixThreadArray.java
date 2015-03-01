@@ -2,6 +2,10 @@ package SC;
 
 import java.util.Random;
 
+/**Cohort Exercise 3
+ * @author User
+ *
+ */
 public class MatrixThreadArray {
 	
 	static int[][] matA;
@@ -9,6 +13,7 @@ public class MatrixThreadArray {
 	static int[][] result;
 
 	public static void main(String[] args) throws InterruptedException {
+		// size%numberOfThreads must be 0 for it to work
 		int size = 200;
 		int numberOfThreads = 25;
 		Thread[] listOfThreads = new Thread[numberOfThreads];
@@ -28,6 +33,7 @@ public class MatrixThreadArray {
 		}
 		long timeDiff = System.currentTimeMillis() - timeIn;		
 		// For debugging purposes
+		// Shows the 2 matrices so that the user can multiply manually to check if the result is correct
 //		for (int i = 0; i < matA.length; i++) {
 //			for (int j = 0; j < matA[0].length; j++) {
 //				System.out.print(matA[i][j] + " ");
@@ -42,6 +48,7 @@ public class MatrixThreadArray {
 //			System.out.println("");
 //		}
 //		System.out.println("");
+		
 		for (int i = 0; i < result.length; i++) {
 			for (int j = 0; j < result[0].length; j++) {
 				System.out.print(result[i][j] + " ");

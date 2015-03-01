@@ -1,13 +1,19 @@
 package SC;
 
+/**Cohort Exercise 5
+ * @author User
+ *
+ */
 public class MultiThreadSearch {
 
 	static boolean isFound = false;
 
 	public static void main(String[] args) {
 		MultiThreadSearch mult = new MultiThreadSearch();
-		int size = 50;
-		int target = 32;
+		
+		int size = 50;	 // size of array to search in 
+		int target = 30; // target value to search
+		
 		int[] list = new int[size];
 		for (int i = 0; i < list.length; i++) {
 			list[i] = i;
@@ -42,7 +48,6 @@ public class MultiThreadSearch {
 
 		@Override
 		public void run() {
-			super.run();
 			for (int i = lower; i < upper; i++) {
 				if (this.isInterrupted()){
 					System.out.println("Thread " + ID + " is interrupted");
@@ -50,10 +55,11 @@ public class MultiThreadSearch {
 				}
 				if (target == integerArray[i]){
 					isFound = true;
-					System.out.println("Thread " + ID + " found " + target + " in position " + i);					
+					System.out.println("Thread " + ID + " found " + target + " in position " + i);	
+					break;
 				}								
 			}
-//			if (!isFound) System.out.println("Thread " + ID + " cannot find element");
+			if (!isFound) System.out.println("Thread " + ID + " unable to find " + target);
 
 		}
 	}

@@ -1,5 +1,9 @@
 package SC;
 
+/**Cohort Exercise 1
+ * @author User
+ *
+ */
 public class MatrixThread {
 	
 	static int[][] matA;
