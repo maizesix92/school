@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.FileWriter"/>
-<fullyQualifiedTypeName name="tictactoe.TicTacToe"/>
-<fullyQualifiedTypeName name="tictactoe2.Player"/>
-<fullyQualifiedTypeName name="tictactoe2.TicTacToe"/>
-<fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
-<fullyQualifiedTypeName name="tictactoe2.TicTacToePlayer"/>
 <fullyQualifiedTypeName name="SC.SocketTimeout"/>
-<fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
 <fullyQualifiedTypeName name="java.rmi.ServerException"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.net.SocketTimeoutException"/>
@@ -21,7 +14,6 @@
 <fullyQualifiedTypeName name="SC.MatrixThread.Thread2"/>
 <fullyQualifiedTypeName name="SC.MatrixRunnable.Thread2"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="SC.MatrixThreadArray.Thread1"/>
 <fullyQualifiedTypeName name="AbstractTestImplement"/>
 <fullyQualifiedTypeName name="TestAbstract"/>
@@ -50,14 +42,22 @@
 <fullyQualifiedTypeName name="java.net.Socket"/>
 <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
 <fullyQualifiedTypeName name="SC.WorkingThread"/>
-<fullyQualifiedTypeName name="java.lang.Runnable"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="SC.FactorThreadServer"/>
-<fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="java.io.ObjectInputStream.GetField"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="SC.FactorThreadServer.ClientListener"/>
 <fullyQualifiedTypeName name="java.math.BigInteger"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="buffer.Buffer"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="buffer.BufferExercise.Producer"/>
+<fullyQualifiedTypeName name="buffer.BufferExercise.Consumer"/>
+<fullyQualifiedTypeName name="buffer.BufferExercise"/>
+<fullyQualifiedTypeName name="buffer.BufferExercise.Item"/>
+<fullyQualifiedTypeName name="java.util.concurrent.Semaphore"/>
+<fullyQualifiedTypeName name="java.util.concurrent.locks.ReentrantLock"/>
+<fullyQualifiedTypeName name="java.lang.Thread"/>
+<fullyQualifiedTypeName name="java.lang.Runnable"/>
 </qualifiedTypeNameHistroy>
