@@ -18,9 +18,9 @@ public class Server
 	public static void main(String[] args) {
 
 		try {
-     //       final ServerSocket sock = new ServerSocket();
-       //     sock.setReuseAddress(true);
-        //    sock.bind(new InetSocketAddress(1027));
+//            final ServerSocket sock = new ServerSocket();
+//            sock.setReuseAddress(true);
+//            sock.bind(new InetSocketAddress(1027));
 			
 			ServerSocket sock = new ServerSocket(1056);
 
