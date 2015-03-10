@@ -32,6 +32,7 @@ class MyRunnableThreadSafe implements Runnable {
 	public void run () {
 		Random random = new Random ();
 		factorizer.factor(10);
+		
 	}
 }
 
