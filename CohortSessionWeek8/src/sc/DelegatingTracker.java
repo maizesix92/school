@@ -7,6 +7,8 @@ import java.util.concurrent.ConcurrentHashMap; //this is thread-safe!
 import java.util.concurrent.ConcurrentMap; //this is thread-safe!
 
 //is this class thread-safe?
+// This class is thread-safe as the only way to access locations is through the method calls in this class
+// Hence, since the setters and getters are synchronized on this class, only 1 thread calling these methods can run at any given time
 public class DelegatingTracker {
 	private final ConcurrentMap<String, Point> locations;
 	
@@ -20,9 +22,11 @@ public class DelegatingTracker {
 	
 	//is this an escape?
 	public synchronized Point getLocation (String id) {
-		return locations.get(id);
+		// to prevent passing of the Point instance to the user (prevention of escape)
+		Point pointClone = new Point(locations.get(id));
+		return pointClone;
 	}
-	
+
 	public synchronized void setLocation (String id, int x, int y) {		
 		if (!locations.containsKey(id)) {
 			throw new IllegalArgumentException ("No such ID: " + id);			

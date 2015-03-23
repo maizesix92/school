@@ -29,7 +29,7 @@ class NewPair {
 		}
 	}
 	
-	public synchronized void incrementY() {
+	public void incrementY() {
 		synchronized (locky) {
 			y++;			
 		}
