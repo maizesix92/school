@@ -14,18 +14,20 @@ public class CacheV2 {
 
 	public List<Integer> service (final int input) throws Exception {
 		Future<List<Integer>> f = results.get(input);
-				
+
 		if (f == null) {
 			Callable<List<Integer>> eval = new Callable<List<Integer>>() {
 				public List<Integer> call () throws InterruptedException {
 					return factor(input);
 				}
 			};
-			
+
 			FutureTask<List<Integer>> ft = new FutureTask<List<Integer>>(eval);
 			f = ft;
-			results.put(input, ft);
-			ft.run();
+			Future<List<Integer>> value = results.putIfAbsent(input, ft);
+			if (value == null){
+				ft.run();
+			}
 		}
 
 		return f.get();
@@ -35,11 +37,11 @@ public class CacheV2 {
 		List<Integer> factors = new ArrayList<Integer>();
 		for (int i = 2; i <= n; i++) {
 			while (n % i == 0) {
-		        factors.add(i);
-		        n /= i;
-		    }
+				factors.add(i);
+				n /= i;
+			}
 		}
-		
+
 		return factors;
 	}
 }

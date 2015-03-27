@@ -4,13 +4,20 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
+/**When queue was used, there will be an instance whereby the queue can be modified while another thread is still traversing it.
+ * Hence, Queue is changed to BlockingQueue and the LInkedList is changed to LinkedBlockingQueue
+ * @author User
+ *
+ */
 public class GDesktopProb {
 	private final static int N_CONSUMERS = 4;
 	
 	//it starts here
 	public static void startIndexing (File[] roots) {
-		Queue<File> queue = new LinkedList<File>();
+		BlockingQueue<File> queue = (BlockingQueue<File>) new LinkedBlockingQueue<File>();
 		FileFilter filter = new FileFilter() {
 			public boolean accept(File file) {return true;}
 		};
@@ -26,11 +33,11 @@ public class GDesktopProb {
 }
 
 class FileCrawlerProb extends Thread {
-	private final Queue<File> fileQueue; 
+	private final BlockingQueue<File> fileQueue; 
 	private final FileFilter fileFilter; 	
 	private final File root;
 	
-	FileCrawlerProb (Queue<File> queue, FileFilter filter, File root) {
+	FileCrawlerProb (BlockingQueue<File> queue, FileFilter filter, File root) {
 		this.fileQueue = queue;
 		this.fileFilter = filter;
 		this.root = root;
@@ -63,7 +70,8 @@ class FileCrawlerProb extends Thread {
 class IndexerProb extends Thread {
 	private final Queue<File> queue;
 	
-	public IndexerProb (Queue<File> queue) {
+	
+	public IndexerProb (BlockingQueue<File> queue) {
 		this.queue = queue;
 	}
 	

@@ -2,6 +2,10 @@ package sc;
 
 import java.util.concurrent.Phaser;
 
+/**More flexible as threads can self register. Do not need to define initial capacity like latch and barrier
+ * @author User
+ *
+ */
 public class PhaserExample
 {
 	public static void main(String[] args) throws InterruptedException
@@ -15,7 +19,7 @@ public class PhaserExample
 		new PhaserExample().testPhaser(phaser,6000);//phaser waiting for 4 parties
 		//now that all threads are initiated, we will de-register main thread 
 		//so that the barrier condition of 3 thread arrival is meet.
-		phaser.arriveAndDeregister();
+		phaser.arriveAndDeregister();//arrive and deregister self(reduce count by 1).
 		Thread.sleep(10000);
 		phasecount = phaser.getPhase();
 		System.out.println("Phasecount is "+phasecount);
@@ -33,8 +37,8 @@ public class PhaserExample
 				{
 					System.out.println(Thread.currentThread().getName()+" arrived");
 					phaser.arriveAndAwaitAdvance();//threads register arrival to the phaser.
-					//phaser.arrive();
-					//System.out.println(Thread.currentThread().getName()+" pass arrived");
+//					phaser.arrive(); // reduce counter by 1 but does not wait for the rest
+//					System.out.println(Thread.currentThread().getName()+" pass arrived");
 					Thread.sleep(sleepTime);
 				}
 
