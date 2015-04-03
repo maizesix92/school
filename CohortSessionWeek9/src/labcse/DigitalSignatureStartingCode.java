@@ -13,7 +13,7 @@ import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.Base64;
+import org.apache.xerces.impl.dv.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.swing.text.html.HTMLDocument.Iterator;
@@ -74,7 +74,7 @@ public class DigitalSignatureStartingCode{
 //TODO: sign the  message digest
         byte[] mySignature = ecipher.doFinal(hashDigested);	// for InputFile1.data
         
-        Base64.Encoder encoder = Base64.getEncoder();
+        Base64 encoder = new Base64();
         String base64OP = new String(encoder.encode(mySignature));
         System.out.println("Base64 format: ");
 		for (int i = 0; i < base64OP.length(); i++) {

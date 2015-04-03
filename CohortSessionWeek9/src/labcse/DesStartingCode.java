@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+import org.apache.xerces.impl.dv.util.Base64;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -55,12 +55,13 @@ public class DesStartingCode {
 
 
 		//TODO: Do the DES encryption here, by calling method Cipher.doFinal(). Convert encrypted byte[] to Base64 format
-		System.out.println("Ciphertext:\n" + new String(dataByte) + "\n");
+		System.out.println("Input file:\n" + new String(dataByte) + "\n");
 		byte[] result = ecipher.doFinal(dataByte);	// result contains the encrypted byte[] of dataByte
-		System.out.println("Encrypted ciphertext:\n" + new String(result));
+		System.out.println("Encrypted ciphertext:\n" + result + "\n");
+		System.out.println("Encrypted ciphertext (new String):\n" + new String(result));
 		System.out.println();
-		Base64.Encoder encoder = Base64.getEncoder();
-		String stringResult = encoder.encodeToString(result);
+		Base64 encoder = new Base64();
+		String stringResult = encoder.encode(result);
 		System.out.println("Base64 format:\n");
 		for (int i = 0; i < stringResult.length(); i++) {
 			try{
@@ -90,10 +91,10 @@ public class DesStartingCode {
 		}
 		//TODO:  Do the DES decryption
 		byte[] decryptionResult = dcipher.doFinal(result);	// Decryption of encrypted byte[] to yield dataByte
-		System.out.println("Decrypted ciphertext(aka original ciphertext): " + new String(decryptionResult));
+		System.out.println("Decrypted ciphertext(aka original ciphertext)(new String): " + new String(decryptionResult));
+		System.out.println("Decrypted ciphertext(aka original ciphertext): " + decryptionResult);
 		System.out.println();
-		Base64.Encoder encoder1 = Base64.getEncoder();
-		String stringResult1 = encoder.encodeToString(decryptionResult);
+		String stringResult1 = encoder.encode(decryptionResult);
 		System.out.println("Base64 format: ");
 		for (int i = 0; i < stringResult1.length(); i++) {
 			try{

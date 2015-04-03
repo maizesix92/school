@@ -21,8 +21,10 @@
 		<list key="textArray">
 		</list>
 	</section>
+	<section name="NewWizardAction">
+	</section>
 	<section name="ImportExportAction">
-		<item value="org.eclipse.egit.ui.internal.clone.GitCloneWizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<item value="org.eclipse.ui.wizards.import.FileSystem" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>
 			<item value="org.eclipse.egit.ui.internal.clone.gitclonecategory"/>
@@ -32,11 +34,11 @@
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID"/>
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="D:\SUTD\Term 5\Computer System Engineering\Week 9\Lab"/>
 			<item value="D:\SUTD\Term 5\Computer System Engineering\Week 5\Lab"/>
 			<item value="D:\SUTD\Term 5\Computer System Engineering\Assignment1"/>
 			<item value="D:\SUTD\Term 5\Computer System Engineering\Week 3\Lab"/>
 			<item value="D:\SUTD\Term 5\Computer System Engineering\Week 3"/>
-			<item value="C:\Users\User\Desktop\SUTD\Term 5\Computer System Engineering\Week 3"/>
 		</list>
 	</section>
 </section>

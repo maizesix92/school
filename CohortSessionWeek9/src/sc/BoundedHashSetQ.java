@@ -1,5 +1,6 @@
 package sc;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,10 +36,32 @@ public class BoundedHashSetQ<T> {
 
 	public static void main(String[] args) {
 		BoundedHashSetQ<Integer> hash = new BoundedHashSetQ<>(5);
-		userThreadHashSetAdd add = new userThreadHashSetAdd(hash);
-		userThreadHashSetRemove remove = new userThreadHashSetRemove(hash);
-		add.start();
-		remove.start();
+//		userThreadHashSetAdd add = new userThreadHashSetAdd(hash);
+//		userThreadHashSetRemove remove = new userThreadHashSetRemove(hash);
+//		add.start();
+//		remove.start();
+		
+		ArrayList<userThreadHashSetAdd> lis = new ArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			lis.add(new userThreadHashSetAdd(hash));
+		}
+		
+		for (userThreadHashSetAdd userThreadHashSetAdd : lis) {
+			userThreadHashSetAdd.start();
+		}
+		
+		for (userThreadHashSetAdd userThreadHashSetAdd : lis) {
+			try {
+				userThreadHashSetAdd.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+//		for (Integer userThreadHashSetAdd : hash.) {
+//			
+//		}
+		System.out.println(hash.toString());
 
 	}
 }
@@ -52,7 +75,7 @@ class userThreadHashSetAdd extends Thread{
 
 	@Override
 	public void run() {
-		while(true){
+//		while(true){
 			for (int i = 0; i < 5; i++) {
 				try {
 					set.add(i);
@@ -63,7 +86,7 @@ class userThreadHashSetAdd extends Thread{
 				}
 			}
 			
-		}
+//		}
 
 	}
 }
