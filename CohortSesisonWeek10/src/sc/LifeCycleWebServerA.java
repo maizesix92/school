@@ -9,14 +9,20 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
 
-public class LifeCycleWebServer {
+/**Part A of Homework Question
+ * RejectedExecutionException is thrown if the if statement in the catch block is commented out and while(true) is used instead
+ * This forces the server to continue accepting clients after Executor has shutdown to throw the RejectedExecutionException
+ * @author User
+ *
+ */
+public class LifeCycleWebServerA {
 	private static final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(100);
-	private static LifeCycleWebServer cycle;
+	private static LifeCycleWebServerA cycle;
 
 	public static void main(String[] args) throws Exception {
 		ServerSocket socket = new ServerSocket(4321);
-		cycle = new LifeCycleWebServer();
-		while (!exec.isShutdown()) {
+		cycle = new LifeCycleWebServerA();
+		while(true){	
 			try {
 				final Socket connection = socket.accept();
 				System.out.println("Client accepted");
@@ -28,12 +34,9 @@ public class LifeCycleWebServer {
 
 				exec.execute(task);
 			} catch (RejectedExecutionException e) {
-				if (!exec.isShutdown()) {
-					System.out.println("LOG: task submission is rejected.");
-				}
+				System.out.println("LOG: task submission is rejected.");
 			}			
 		}
-		System.out.println("Server terminated");
 	}
 
 	public void stop() {

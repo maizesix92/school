@@ -3,29 +3,30 @@ package sc;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
-public class LifeCycleWebServer {
-	private static final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(100);
-	private static LifeCycleWebServer cycle;
+public class LifeCycleWebServerWithFuture {
+	private static final ExecutorService exec = new ScheduledThreadPoolExecutor (100);
+
 
 	public static void main(String[] args) throws Exception {
 		ServerSocket socket = new ServerSocket(4321);
-		cycle = new LifeCycleWebServer();
+
 		while (!exec.isShutdown()) {
 			try {
 				final Socket connection = socket.accept();
-				System.out.println("Client accepted");
 				Runnable task = new Runnable () {
 					public void run() {
 						handleRequest(connection);
 					}
 				};
-
+				//				Future futureTask = exec.submit(task);
 				exec.execute(task);
 			} catch (RejectedExecutionException e) {
 				if (!exec.isShutdown()) {
@@ -33,33 +34,39 @@ public class LifeCycleWebServer {
 				}
 			}			
 		}
-		System.out.println("Server terminated");
 	}
 
 	public void stop() {
 		exec.shutdown();
-		System.out.println("Stopping");
 	}
 
 	protected static void handleRequest(Socket connection) {
 		try {
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			BigInteger number = new BigInteger(in.readLine());
+			Callable<BigInteger> task = new Callable<BigInteger>() {
+
+				@Override
+				public BigInteger call() throws Exception {
+
+					return factor(number);
+				}
+			};			
+			Future<BigInteger> futureTask =  exec.submit(task);			
 			PrintWriter out = new PrintWriter(connection.getOutputStream(), true);
-			String message = in.readLine();
-			System.out.println("Input taken");
-			if (message.equals("Stop")){
-				System.out.println("Request to stop");
-				cycle.stop();
-			}else{
-				BigInteger number = new BigInteger(message);
-				BigInteger result = factor(number);
+			try{
+				BigInteger result = futureTask.get(3, TimeUnit.MINUTES);
 				System.out.println("sending results: " + String.valueOf(result));
 				out.println(result);
 				out.flush();
-				in.close();
-				out.close();
-				connection.close();
+			}catch(TimeoutException e){
+				out.println("Timeout");
+				out.flush();
 			}
+			
+			in.close();
+			out.close();
+			connection.close();
 		}
 		catch (Exception e) {
 			System.out.println("Something went wrong with the connection");

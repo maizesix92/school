@@ -3,20 +3,31 @@ package sc;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.*;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-public class LifeCycleWebServer {
-	private static final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(100);
-	private static LifeCycleWebServer cycle;
+/**Part B of Homework Question
+ * A ThreadPoolExecutor is used instead. Given that there are 10 clients, and the maximum  pool size is 5 while the maximum BlockingQueue size is 3,
+ * the blocking queue would not be able to accommodate the remaining 2 clients as their requests are sent to the server. Hence, RejectionExecutionException will be thrown.
+ * @author Marcus
+ *
+ */
+public class LifeCycleWebServerB {
+	private static final BlockingQueue<Runnable> queue = new LinkedBlockingQueue<Runnable>(3);
+	private static final ThreadPoolExecutor exec = new ThreadPoolExecutor(1, 5, 10000, TimeUnit.MILLISECONDS, queue);
+	private static LifeCycleWebServerB cycle;
 
 	public static void main(String[] args) throws Exception {
 		ServerSocket socket = new ServerSocket(4321);
-		cycle = new LifeCycleWebServer();
-		while (!exec.isShutdown()) {
+		cycle = new LifeCycleWebServerB();
+		while(true){	
 			try {
 				final Socket connection = socket.accept();
 				System.out.println("Client accepted");
@@ -28,12 +39,9 @@ public class LifeCycleWebServer {
 
 				exec.execute(task);
 			} catch (RejectedExecutionException e) {
-				if (!exec.isShutdown()) {
 					System.out.println("LOG: task submission is rejected.");
-				}
 			}			
 		}
-		System.out.println("Server terminated");
 	}
 
 	public void stop() {

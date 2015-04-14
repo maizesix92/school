@@ -5,7 +5,7 @@ import java.net.*;
 
 public class MultipleClient {
 	public static void main(String[] args) throws Exception {
-		int numberOfClients = 1000; //vary this number here
+		int numberOfClients = 100; //vary this number here
 		long startTime = System.currentTimeMillis();    	
 		BigInteger n = new BigInteger("4294967297");
 		//    	BigInteger n = new BigInteger("239839672845043");
@@ -42,8 +42,7 @@ class Client implements Runnable {
 			BufferedReader in =
 					new BufferedReader(
 							new InputStreamReader(socket.getInputStream()));
-//			Thread.sleep(10000);
-			// Include the if-else statement for cohort question 4
+			// Include the if-else statement to send a shutdown command to the server (for cohort question 3)
 //			if (ID == 64){	// sending a stop command
 //				out.println("Stop");
 //				out.flush();
