@@ -1,11 +1,9 @@
 package sc;
 
-import Annotations.GuardedBy;
-import Annotations.ThreadSafe;
 
-@ThreadSafe
+//@ThreadSafe
 public class SimulatedCAS {
-    @GuardedBy("this") private int value;
+    private int value;
 
     public synchronized int get() {
         return value;

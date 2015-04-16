@@ -2,12 +2,9 @@ package sc;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import Annotations.Immutable;
-import Annotations.ThreadSafe;
-
-@ThreadSafe
+//@ThreadSafe
 public class CasNumberRange {
-@Immutable
+//@Immutable
     private static class IntPair {
 		// INVARIANT: lower <= upper
 		final int lower;

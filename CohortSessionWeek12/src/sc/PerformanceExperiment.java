@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class PerformanceExperiment {
-    private static final int NUM_THREADS = 2;
+    private static final int NUM_THREADS = 1000;
     //private static BigInteger n = new BigInteger("1127451830576035879");
     //private static BigInteger n = new BigInteger("4294967297");
     private static BigInteger n = new BigInteger("239839672845043");

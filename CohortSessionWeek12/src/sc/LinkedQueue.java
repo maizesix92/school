@@ -2,10 +2,7 @@ package sc;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-import Annotations.GuardedBy;
-import Annotations.ThreadSafe;
-
-@ThreadSafe
+//@ThreadSafe
 public class LinkedQueue <E> {
     private static class Node <E> {
         final E item;

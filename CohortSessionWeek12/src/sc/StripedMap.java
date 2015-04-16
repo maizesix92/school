@@ -17,8 +17,22 @@ public class StripedMap {
 	
 	public Object get (Object key) {
 		//todo: get the item with the given key in the map
-		
-		return null;		
+		Node result = null;
+		int bucketToConsider = hash(key);
+		Node consider = buckets[bucketToConsider];
+		synchronized (locks[bucketToConsider%buckets.length]) {			
+			while(result == null){
+				if (consider.key != key && consider.next != null){
+					consider = consider.next;
+				}else if (consider.key != key && consider.next == null){
+					return null;
+				}else{
+					result = consider;
+					break;
+				}
+			}
+		}
+		return result;		
 	}
 	
 	private final int hash (Object key) {
@@ -26,12 +40,24 @@ public class StripedMap {
 	}
 	
 	public void clear () {
-		//todo: remove all objects in the map
+		for (int i = 0; i < buckets.length; i++) {
+			synchronized(locks[i%N_LOCKS]){
+				buckets[i] = null;
+			}
+		}		
 	}
 
 	public int size () {
 		//todo: count how many items are in the map
-		return 0; //modify this
+		int result = 0;
+		for (Node node : buckets) {
+			while (node.next != null){
+				node = node.next;
+				result++;
+			}
+		}
+		
+		return result;
 	}
 	
     class Node {
@@ -44,5 +70,9 @@ public class StripedMap {
             this.value = value;
         }
     }
+    
+    public static void main(String[] args) {
+		System.out.println("f".hashCode());
+	}
 }
 
