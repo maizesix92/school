@@ -41,7 +41,7 @@ public class SlidingGame {
     		PuzzleNode current = working.poll();
 
     		String stringConfig = toString(current.config);
-    		//System.out.println("exploring " + stringConfig);
+    		System.out.println("exploring " + stringConfig);
     		if (!seen.contains(stringConfig)) {
                 seen.add(stringConfig);
                 if (isGoal(current.config)) {
@@ -52,6 +52,7 @@ public class SlidingGame {
                     PuzzleNode child = new PuzzleNode(next, current);
                     working.offer(child);
                 }
+                System.out.println("Next line");
     		}
     	}
     	
@@ -117,21 +118,21 @@ public class SlidingGame {
     }
 }
 
-class PuzzleNode {
-	final int[] config;
-	final PuzzleNode prev;
-	
-	PuzzleNode(int[] config, PuzzleNode prev) {
-		this.config = config;
-		this.prev = prev;
-	}
-	
-	List<int[]> getTrace() {
-		List<int[]> solution = new LinkedList<int[]> ();
-		for (PuzzleNode n = this; n.prev != null; n = n.prev) {
-			solution.add(0, n.config);
-		}
-		
-		return solution;
-	}
-}
+//class PuzzleNode {
+//	final int[] config;
+//	final PuzzleNode prev;
+//	
+//	PuzzleNode(int[] config, PuzzleNode prev) {
+//		this.config = config;
+//		this.prev = prev;
+//	}
+//	
+//	List<int[]> getTrace() {
+//		List<int[]> solution = new LinkedList<int[]> ();
+//		for (PuzzleNode n = this; n.prev != null; n = n.prev) {
+//			solution.add(0, n.config);
+//		}
+//		
+//		return solution;
+//	}
+//}

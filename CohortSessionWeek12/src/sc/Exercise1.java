@@ -28,6 +28,7 @@ public class Exercise1 {
 		for (Future<Double> future : lis) {
 			result += future.get();
 		}
+		// Comparing the answers, 1 single threaded, 1 multi-threaded
 		System.out.println(integrate(0, 1));
 		System.out.println(result);
 		exec.shutdown();
