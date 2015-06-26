@@ -15,3 +15,5 @@ CSEAssignment/src/ThreadListerTable.java
 CSEAssignment/src/ThreadLister.java
 CSEAssignment/src/TestTableRowTable.java
 .metadata/.log
+*.log
+*metadata*
